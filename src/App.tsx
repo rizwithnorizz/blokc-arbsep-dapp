@@ -3,11 +3,17 @@ import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
 
+import Button from './components/Button/Button'
+
 function App() {
   const [count, setCount] = useState(0)
 
   const increment =  () => {
     setCount((count) => count + 1);
+  }
+
+  const decrement = () => {
+    setCount((count) => count - 1);
   }
 
   return (
@@ -20,11 +26,12 @@ function App() {
           <img src={reactLogo} className="logo react" alt="React logo" />
         </a>
       </div>
-      <h1>Vite + React</h1>
+      <h1>Number is {count}</h1>
       <div className="card">
-        <button onClick={increment}>
-          count is {count}
-        </button>
+        <Button label = "Increment" onClick = {increment}/>
+        <Button label = "Decrement" onClick = {decrement}/>
+
+
         <p>
           Edit <code>src/App.tsx</code> and save to test HMR
         </p>

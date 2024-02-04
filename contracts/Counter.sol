@@ -1,7 +1,7 @@
 pragma solidity ^0.8.9;
 
 contract Counter{
-    uint 256 public counter;
+    uint256 public counter;
     event CounterIncremented(uint256 newCounterValue);
 
     constructor(){
