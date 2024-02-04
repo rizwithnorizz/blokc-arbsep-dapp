@@ -1,44 +1,37 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
 
 import Button from './components/Button/Button'
+import TextField from './components/TextField/Textfield'
+
+import { send } from "../scripts/deploy";
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [sender, setSender] = useState("")
+  const [receiver, setReceiver] = useState("")
+  const [amount, setAmount] = useState("")
 
-  const increment =  () => {
-    setCount((count) => count + 1);
+  const handleChangeSender = (value: string) =>{
+    setSender(value);
   }
-
-  const decrement = () => {
-    setCount((count) => count - 1);
+  const handleChangeReceiver = (value: string) =>{
+    setReceiver(value);
+  }
+  const handleChangeAmount = (value: string) =>{
+    setAmount(value);
+  }
+  const sendHandler= () =>{
+    send(sender, receiver, amount);
   }
 
   return (
     <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Number is {count}</h1>
       <div className="card">
-        <Button label = "Increment" onClick = {increment}/>
-        <Button label = "Decrement" onClick = {decrement}/>
-
-
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
+        <TextField value = {sender} onChange={handleChangeSender} placeholder ='Sender'/>
+        <TextField value = {receiver} onChange={handleChangeReceiver} placeholder ='Receiver'/>
+        <TextField value = {amount} onChange={handleChangeAmount} placeholder ='Amount'/>
+        <Button label = "Send Token" onClick = {sendHandler}/>
       </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
     </>
   )
 }
